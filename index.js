@@ -13,6 +13,8 @@
 
 */
 
+var TEST_MODE = true;
+
 require('babel-register')({
   "presets": ["react", "es2015"]
 });
@@ -26,26 +28,26 @@ function Component(props, factory, name) {
   this.factory = factory;
   this.name = name;
   this.toString = function() {
-
     return ReactDOM.renderToString(this.factory(this.props));
-
   };
 
 }
 
 function ComponentManager(setup) {
 
+  var PROJECT_ROOT = TEST_MODE ? './' : '../../../';
+
   var components = {};
   var activeComponents = [];
 
   //retrieve components from file and store
-  var config = require(setup.file);
+  var config = require(PROJECT_ROOT + setup.file);
   for(var name in config) {
 
     if(config.hasOwnProperty(name)) {
 
       var comp = config[name];
-      var compObject = require(comp.file); //make relative to user project folder
+      var compObject = require(PROJECT_ROOT + comp.file); //make relative to user project folder
       var compFactory = React.createFactory(compObject);
       components[name] = new Component(comp.rootProps, compFactory, name);
 
@@ -85,6 +87,7 @@ function ComponentManager(setup) {
       data[c.name] = c.toString(); //render comp to string
     });
 
+    //include global variables not attached to components
     for(var key in props) {
       data.props[key] = props[key];
     }

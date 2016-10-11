@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title reactful test page
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js')
+  body
+    div(id="component-a")!= ComponentA
+    div(id="component-b")!= ComponentB
+  script window.initial_props = !{props}
+  script(src='http://localhost:3333/public/ComponentA.js' type="text/babel")
+  script(src='http://localhost:3333/public/ComponentB.js' type="text/babel")
