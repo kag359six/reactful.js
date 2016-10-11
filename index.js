@@ -1,19 +1,5 @@
-/*
-  reactful.js manages server-side react components and provides a simple
-  api to render multiple components on the server
 
-  GOAL: Rendering separate components into one template sucks.
-  This module should be able to minimize the management of components
-  in handlers, as well as make it easy to render multiple components at once,
-  even if they are unrelated.
-
-  TO DO:
-    #configure to work as standalone npm module
-    #load components using path relative to user's project folder
-
-*/
-
-var TEST_MODE = true;
+var TEST_MODE = false;
 
 require('babel-register')({
   "presets": ["react", "es2015"]
@@ -21,6 +7,7 @@ require('babel-register')({
 
 var React = require('react');
 var ReactDOM = require('react-dom/server');
+var path = require('path');
 
 function Component(props, factory, name) {
 
@@ -41,13 +28,13 @@ function ComponentManager(setup) {
   var activeComponents = [];
 
   //retrieve components from file and store
-  var config = require(PROJECT_ROOT + setup.file);
+  var config = require(path.resolve(__dirname, setup.file));
   for(var name in config) {
 
     if(config.hasOwnProperty(name)) {
 
       var comp = config[name];
-      var compObject = require(PROJECT_ROOT + comp.file); //make relative to user project folder
+      var compObject = require(path.resolve(__dirname, comp.file)); //make relative to user project folder
       var compFactory = React.createFactory(compObject);
       components[name] = new Component(comp.rootProps, compFactory, name);
 

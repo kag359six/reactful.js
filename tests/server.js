@@ -7,7 +7,7 @@ app.set('views', __dirname + '/views');
 app.use('/public', express.static(__dirname + '/test_components'));
 
 app.use(reactful({
-  file: 'tests/reactful-config.js',
+  file: __dirname + '/reactful-config.js',
   universal: ['ComponentA']
 }));
 
