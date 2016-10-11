@@ -1,0 +1,30 @@
+{
+  "name": "reactful",
+  "version": "0.0.0",
+  "description": "Small library that makes server side rendering with React even easier",
+  "main": "reactful.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kag359six/reactful.js.git"
+  },
+  "keywords": [
+    "react",
+    "server-side",
+    "rendering",
+    "component",
+    "manager"
+  ],
+  "author": "Kristopher Guzman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kag359six/reactful.js/issues"
+  },
+  "homepage": "https://github.com/kag359six/reactful.js",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.1"
+  }
+}
