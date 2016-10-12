@@ -1,6 +1,4 @@
 
-var TEST_MODE = false;
-
 require('babel-register')({
   "presets": ["react", "es2015"]
 });
@@ -21,8 +19,6 @@ function Component(props, factory, name) {
 }
 
 function ComponentManager(setup) {
-
-  var PROJECT_ROOT = TEST_MODE ? './' : '../../../';
 
   var components = {};
   var activeComponents = [];
