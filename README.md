@@ -12,10 +12,17 @@ Reactful requires that you are using [Express.js](https://expressjs.com), and so
 
 ```
 npm install reactful
-
 ```
 
 Reactful is basically just a middleware function. You pass it to your app and provide the file path for the ```reactful-config.js``` file. You can name this whatever you want, and you can have different config files for different parts of your app (ex. different router objects);
+
+There are 3 steps to using reactful:
+
+*specify and create a reactful-config file
+*dock and render components
+*sync the React DOM
+
+###Step 1
 
 ```
 var express = require('express');
@@ -43,6 +50,8 @@ module.exports = {
 
 ```
 
+###Step 2
+
 You can name the component whatever you want here, but it is best that it remains consistent with your react code. ```file``` specifies the path to the component, and ```rootProps``` specifies any properties your component requires. This is where you place your default property value (assuming it ever changes).
 
 Here is where Reactful becomes useful. In your route handlers, you can specify which components you wish to use for this handler, then render them with whatever new property values you want to assign.
@@ -61,7 +70,9 @@ app.get('/', function(req, res) {
 
 ```res.components.use``` takes an array of component names. **Make sure it corresponds to a component name in your config file**. ```res.components.render``` is an extension of Express's ```res.render``` method. Just like the normal render method, you can pass any kinds of variables you'd like and they will be available in your template file, but now you can also set property values of components you mounted in ```res.components.use```.
 
-###syncing the React DOM on the client and server
+###Step 3
+
+Your components are set and ready on the server, but the React DOM on the client is not identical to the one on the server. You need to sync the React DOM.
 
 Your components are now available to you in your template with the same name as specified in the config file. You can put your initial component properties in a variable to be used by the client-side version of your components. This way, the server-side and client-side virtual DOMs are identical and you can reap the benefits of server side rendering with React.
 
