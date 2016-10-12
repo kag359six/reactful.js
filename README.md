@@ -29,12 +29,13 @@ var express = require('express');
 var app = express();
 
 app.use(reactsir({
-  file: __dirname + '/reactsir-config.js'
+  file: __dirname + '/reactsir-config.js',
+  universal: ['ComponentB']
 }));
 
 ```
 
-What is the ```reactsir-config.js``` file for? It is where you specify the components you will render on the server, as well as their properties.
+```reactsir-config.js``` is where you specify the components you will render on the server, as well as their properties. we pass the path to this file, and (optionally) pass the names of any components we want to be rendered no matter what route handler. For example, if you have a page header component, you may want to render that on every page, so you would include it in the ```universal``` array.
 
 ```
 module.exports = {
