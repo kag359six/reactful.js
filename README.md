@@ -1,24 +1,24 @@
-#Reactful.js
+#Reactsir.js
 
-Trying to manage the rendering of all your React components on the server can get tedious and cumbersome, especially when properties change depending on state in the server. Reactful provides a more intuitive way to manage your React components.
+Trying to manage the rendering of all your React components on the server can get tedious and cumbersome, especially when properties change depending on state in the server. Reactsir provides a more intuitive way to manage your React components.
 
 ##Getting Started
 
 ###Prerequisites
 
-Reactful requires that you are using [Express.js](https://expressjs.com), and some sort of templating engine.
+Reactsir requires that you are using [Express.js](https://expressjs.com), and some sort of templating engine.
 
 ###Installing / Code Examples
 
 ```
-npm install reactful
+npm install reactsir
 ```
 
-Reactful is basically just a middleware function. You pass it to your app and provide the file path for the ```reactful-config.js``` file. You can name this whatever you want, and you can have different config files for different parts of your app (ex. different router objects);
+Reactsir is basically just a middleware function. You pass it to your app and provide the file path for the ```reactsir-config.js``` file. You can name this whatever you want, and you can have different config files for different parts of your app (ex. different router objects);
 
-There are 3 steps to using reactful:
+There are 3 steps to using Reactsir:
 
-*specify and create a reactful-config file
+*specify and create a reactsir-config file
 *dock and render components
 *sync the React DOM
 
@@ -28,13 +28,13 @@ There are 3 steps to using reactful:
 var express = require('express');
 var app = express();
 
-app.use(reactful({
-  file: __dirname + '/reactful-config.js'
+app.use(reactsir({
+  file: __dirname + '/reactsir-config.js'
 }));
 
 ```
 
-What is the ```reactful-config.js``` file for? It is where you specify the components you will render on the server, as well as their properties.
+What is the ```reactsir-config.js``` file for? It is where you specify the components you will render on the server, as well as their properties.
 
 ```
 module.exports = {
@@ -54,7 +54,7 @@ module.exports = {
 
 You can name the component whatever you want here, but it is best that it remains consistent with your react code. ```file``` specifies the path to the component, and ```rootProps``` specifies any properties your component requires. This is where you place your default property value (assuming it ever changes).
 
-Here is where Reactful becomes useful. In your route handlers, you can specify which components you wish to use for this handler, then render them with whatever new property values you want to assign.
+Here is where reactsir becomes useful. In your route handlers, you can specify which components you wish to use for this handler, then render them with whatever new property values you want to assign.
 
 ```
 app.get('/', function(req, res) {
@@ -84,7 +84,7 @@ Here is an example:
 doctype html
 html
   head
-    title reactful test page
+    title reactsir test page
     script(src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js')
@@ -126,7 +126,7 @@ if(onServer) {
 
 If we are on the server, we simply export our component. Otherwise, we render it as we normally would, except now we initialize it with the ```window.initial_props.messageA``` property.
 
-Synchronizing the React DOM is not apart of Reactful, so you can handle that however you'd like. All Reactful does is pass the correct properties and stringified components to your template. It's up to you to determine how you wish to synchronize the data.
+Synchronizing the React DOM is not apart of Reactsir, so you can handle that however you'd like. All Reactsir does is pass the correct properties and stringified components to your template. It's up to you to determine how you wish to synchronize the data.
 
 ##Test Project
 
@@ -136,4 +136,4 @@ There is a test folder included in this repository. You can download everything 
 node tests/server.js
 ```
 
-then going to ```http://localhost:3333/```. It will display a message saying ```I am component A``` and ```I am component B```. I would recommend playing around in this test folder to get a feel for how reactful can be setup and used.
+then going to ```http://localhost:3333/```. It will display a message saying ```I am component A``` and ```I am component B```. I would recommend playing around in this test folder to get a feel for how Reactsir can be setup and used.
