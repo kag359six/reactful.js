@@ -126,6 +126,8 @@ if(onServer) {
 
 If we are on the server, we simply export our component. Otherwise, we render it as we normally would, except now we initialize it with the ```window.initial_props.messageA``` property.
 
+Synchronizing the React DOM is not apart of Reactful, so you can handle that however you'd like. All Reactful does is pass the correct properties and stringified components to your template. It's up to you to determine how you wish to synchronize the data.
+
 ##Test Project
 
 There is a test folder included in this repository. You can download everything and run it using:
