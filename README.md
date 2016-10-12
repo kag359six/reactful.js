@@ -18,9 +18,9 @@ Reactsir is basically just a middleware function. You pass it to your app and pr
 
 There are 3 steps to using Reactsir:
 
-*specify and create a reactsir-config file
-*dock and render components
-*sync the React DOM
+* specify and create a reactsir-config file
+* dock and render components
+* sync the React DOM
 
 ###Step 1
 
