@@ -50,8 +50,10 @@ Here is where Reactful becomes useful. In your route handlers, you can specify w
 ```
 app.get('/', function(req, res) {
 
-  res.components.use(['ComponentB']);
-  res.components.render('index');
+  res.components.use(['ComponentA']);
+  res.components.render('index', {
+      messageA: 'This is a new message'
+  });
 
 });
 
@@ -77,10 +79,8 @@ html
     script(src='https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js')
   body
     div(id="component-a")!= ComponentA
-    div(id="component-b")!= ComponentB
   script window.initial_props = !{props}
   script(src='http://localhost:3333/public/ComponentA.js' type="text/babel")
-  script(src='http://localhost:3333/public/ComponentB.js' type="text/babel")
 
 ```
 
@@ -89,7 +89,6 @@ There are two important pieces to this code. First, we load the necessary librar
 ```
 body
   div(id="component-a")!= ComponentA
-  div(id="component-b")!= ComponentB
 
 ```
 
@@ -100,7 +99,7 @@ script window.initial_props = !{props}
 
 ```
 
-Here is how we might use this variable to initialize our components
+Here is how we might use this variable to initialize our components:
 
 ```
 if(onServer) {
@@ -115,3 +114,13 @@ if(onServer) {
 ```
 
 If we are on the server, we simply export our component. Otherwise, we render it as we normally would, except now we initialize it with the ```window.initial_props.messageA``` property.
+
+##Test Project
+
+There is a test folder included in this repository. You can download everything and run it using:
+
+```
+node tests/server.js
+```
+
+then going to ```http://localhost:3333/```. It will display a message saying ```I am component A``` and ```I am component B```. I would recommend playing around in this test folder to get a feel for how reactful can be setup and used.
