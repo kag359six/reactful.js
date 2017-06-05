@@ -6,7 +6,7 @@ app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 app.use('/public', express.static(__dirname + '/test_components'));
 
-app.use(reactful({
+app.use(reactsir({
   file: __dirname + '/reactsir-config.js',
   universal: ['ComponentA']
 }));

@@ -25,17 +25,30 @@ function ComponentManager(setup) {
 
   //retrieve components from file and store
   var config = require(path.resolve(__dirname, setup.file));
-  for(var name in config) {
+  console.log(Object.keys(config).length);
+  if(Object.keys(config).length > 0) {
 
-    if(config.hasOwnProperty(name)) {
+    for(var name in config) {
 
-      var comp = config[name];
-      var compObject = require(path.resolve(__dirname, comp.file)); //make relative to user project folder
-      var compFactory = React.createFactory(compObject);
-      components[name] = new Component(comp.rootProps, compFactory, name);
+      if(config.hasOwnProperty(name)) {
+
+        var comp = config[name];
+        var compObject = require(path.resolve(__dirname, comp.file)); //make relative to user project folder
+        var compFactory = React.createFactory(compObject);
+        components[name] = new Component(comp.rootProps, compFactory, name);
+
+      }
 
     }
 
+  } else {
+    return function(req, res, next) {
+
+      this.res = res;
+      res.components = null;
+      return next();
+
+    }
   }
 
   //add universal components to list of active components
@@ -76,6 +89,7 @@ function ComponentManager(setup) {
     }
 
     data.props = JSON.stringify(data.props);
+    console.log(data);
     this.res.render(viewPath, data);
 
   };
