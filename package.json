@@ -1,6 +1,6 @@
 {
   "name": "reactsir",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Small library that makes server side rendering with React even easier",
   "main": "reactsir.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "component",
     "manager"
   ],
-  "author":  {
+  "author": {
     "name": "Kristopher Guzman",
     "email": "kag359six@gmail.com",
     "url": "kristopherguzman.com"
