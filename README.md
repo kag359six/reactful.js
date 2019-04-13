@@ -1,14 +1,14 @@
-#Reactsir.js
+# Reactsir.js
 
 Trying to manage the rendering of all your React components on the server can get tedious and cumbersome, especially when properties change depending on state in the server. Reactsir provides a more intuitive way to manage your React components.
 
-##Getting Started
+## Getting Started
 
-###Prerequisites
+### Prerequisites
 
 Reactsir requires that you are using [Express.js](https://expressjs.com), and some sort of templating engine.
 
-###Installing / Code Examples
+### Installing / Code Examples
 
 ```
 npm install reactsir
@@ -22,7 +22,7 @@ There are 3 steps to using Reactsir:
 * dock and render components
 * sync the React DOM
 
-###Step 1
+### Step 1
 
 ```
 var express = require('express');
@@ -51,7 +51,7 @@ module.exports = {
 
 ```
 
-###Step 2
+### Step 2
 
 You can name the component whatever you want here, but it is best that it remains consistent with your react code. ```file``` specifies the path to the component, and ```rootProps``` specifies any properties your component requires. This is where you place your default property value (assuming it ever changes).
 
@@ -71,7 +71,7 @@ app.get('/', function(req, res) {
 
 ```res.components.use``` takes an array of component names. **Make sure it corresponds to a component name in your config file**. ```res.components.render``` is an extension of Express's ```res.render``` method. Just like the normal render method, you can pass any kinds of variables you'd like and they will be available in your template file, but now you can also set property values of components you mounted in ```res.components.use```.
 
-###Step 3
+### Step 3
 
 Your components are set and ready on the server, but the React DOM on the client is not identical to the one on the server. You need to sync the React DOM.
 
@@ -129,7 +129,7 @@ If we are on the server, we simply export our component. Otherwise, we render it
 
 Synchronizing the React DOM is not apart of Reactsir, so you can handle that however you'd like. All Reactsir does is pass the correct properties and stringified components to your template. It's up to you to determine how you wish to synchronize the data.
 
-##Test Project
+## Test Project
 
 There is a test folder included in this repository. You can download everything and run it using:
 
